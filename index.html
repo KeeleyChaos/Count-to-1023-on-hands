@@ -7,13 +7,14 @@
 <style>
   body {
     font-family: monospace;
-    white-space: pre;
+    white-space: pre-wrap; /* Allows text to wrap within the container */
     background-color: #f0f0f0;
     padding: 10px;
   }
 </style>
 </head>
 <body>
+<div id="binaryOutput"></div> <!-- Container for the binary output -->
 <script>
   // Function to generate the binary sequence
   function generateBinarySequence() {
@@ -22,13 +23,13 @@
       let binary = i.toString(2);
       binary = binary.padStart(10, '0');
       let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, 'I');
-      sequence += modifiedBinary + '\\n';
+      sequence += modifiedBinary + '<br>'; // Add a line break after each sequence
     }
     return sequence;
   }
 
-  // Display the binary sequence in the body of the page
-  document.body.textContent = generateBinarySequence();
+  // Display the binary sequence in the div container
+  document.getElementById('binaryOutput').innerHTML = generateBinarySequence();
 </script>
 </body>
 </html>
