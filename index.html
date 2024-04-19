@@ -3,18 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Binary Display</title>
+<title>Binary Hand Counting</title>
 <style>
   body {
-    font-family: monospace;
-    white-space: pre-wrap; /* Allows text to wrap within the container */
+    font-family: sans-serif;
+    white-space: pre-wrap;
     background-color: #f0f0f0;
     padding: 10px;
+  }
+  #intro {
+    margin-bottom: 20px;
   }
 </style>
 </head>
 <body>
-<div id="binaryOutput"></div> <!-- Container for the binary output -->
+<div id="intro">
+  This is the website where you learn how to count to 1,023 on your own two hands, "." represents a closed finger, "l" represents an open one
+</div>
+<div id="binaryOutput"></div>
 <script>
   // Function to generate the binary sequence
   function generateBinarySequence() {
@@ -22,8 +28,8 @@
     for (let i = 0; i <= 1023; i++) {
       let binary = i.toString(2);
       binary = binary.padStart(10, '0');
-      let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, '|');
-      sequence += modifiedBinary + '<br>'; // Add a line break after each sequence
+      let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, 'l');
+      sequence += modifiedBinary + '<br>';
     }
     return sequence;
   }
