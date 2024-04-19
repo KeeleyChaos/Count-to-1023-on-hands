@@ -22,7 +22,7 @@
     for (let i = 0; i <= 1023; i++) {
       let binary = i.toString(2);
       binary = binary.padStart(10, '0');
-      let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, 'I');
+      let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, '|');
       sequence += modifiedBinary + '<br>'; // Add a line break after each sequence
     }
     return sequence;
