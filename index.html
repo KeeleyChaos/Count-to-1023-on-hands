@@ -17,28 +17,40 @@
   #binaryOutput {
     margin-top: 20px;
   }
+  .error {
+    color: red;
+    font-size: 20px;
+  }
 </style>
 </head>
 <body>
 <div id="intro">
-  This is the website where you learn how to count up to 1,023 on your own two hands, "." represents a closed finger, "l" represents an open one
+  This is the website where you learn how to count to 1,023 on your own two hands, "." represents a closed finger, "l" represents an open one
 </div>
 <input type="number" id="countTo" placeholder="Enter a number" min="0" max="1023">
 <button onclick="generateBinarySequence()">Recount</button>
 <div id="binaryOutput"></div>
 <script>
-  // Function to generate the binary sequence
+  // Function to generate the binary sequence or display an error
   function generateBinarySequence() {
-    let countTo = document.getElementById('countTo').value || 1023;
-    countTo = Math.min(Math.max(countTo, 0), 1023); // Ensure the number is within range
+    let countTo = document.getElementById('countTo').value;
+    let outputDiv = document.getElementById('binaryOutput');
+    
+    // Check if the input is within the valid range
+    if (countTo === '' || isNaN(countTo) || countTo < 0 || countTo > 1023) {
+      outputDiv.innerHTML = '<span class="error">ERROR!</span>';
+      return;
+    }
+    
+    countTo = parseInt(countTo); // Convert the input to an integer
     let sequence = '';
     for (let i = 0; i <= countTo; i++) {
       let binary = i.toString(2);
       binary = binary.padStart(10, '0');
-      let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, 'l');
+      let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, 'l'); // Changed 'I' to 'l'
       sequence += modifiedBinary + '<br>';
     }
-    document.getElementById('binaryOutput').innerHTML = sequence;
+    outputDiv.innerHTML = sequence;
   }
 
   // Initial binary sequence generation
