@@ -6,7 +6,7 @@
 <title>Binary Hand Counting</title>
 <style>
   body {
-    font-family: sans-serif;
+    font-family: monospace;
     white-space: pre-wrap;
     background-color: #f0f0f0;
     padding: 10px;
@@ -14,28 +14,35 @@
   #intro {
     margin-bottom: 20px;
   }
+  #binaryOutput {
+    margin-top: 20px;
+  }
 </style>
 </head>
 <body>
 <div id="intro">
-This is the website where you learn how to count to 1,023 on your own two hands, "." represents a closed finger, "l" represents an open one
+  This is the website where you learn how to count up to 1,023 on your own two hands, "." represents a closed finger, "l" represents an open one
 </div>
+<input type="number" id="countTo" placeholder="Enter a number" min="0" max="1023">
+<button onclick="generateBinarySequence()">Recount</button>
 <div id="binaryOutput"></div>
 <script>
   // Function to generate the binary sequence
   function generateBinarySequence() {
+    let countTo = document.getElementById('countTo').value || 1023;
+    countTo = Math.min(Math.max(countTo, 0), 1023); // Ensure the number is within range
     let sequence = '';
-    for (let i = 0; i <= 1023; i++) {
+    for (let i = 0; i <= countTo; i++) {
       let binary = i.toString(2);
       binary = binary.padStart(10, '0');
       let modifiedBinary = binary.replace(/0/g, '.').replace(/1/g, 'l');
       sequence += modifiedBinary + '<br>';
     }
-    return sequence;
+    document.getElementById('binaryOutput').innerHTML = sequence;
   }
 
-  // Display the binary sequence in the div container
-  document.getElementById('binaryOutput').innerHTML = generateBinarySequence();
+  // Initial binary sequence generation
+  generateBinarySequence();
 </script>
 </body>
 </html>
